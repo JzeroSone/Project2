@@ -8,7 +8,7 @@ public class FindNearestObject : MonoBehaviour
 
     void Start()
     {
-        radius = GetComponent<Player>().radius;
+        radius = GetComponent<Player>().attackRange;
     }
     void Update()
     {
@@ -21,6 +21,10 @@ public class FindNearestObject : MonoBehaviour
         float minDistance = Mathf.Infinity;
         if(colliders.Length == 1)
         {
+            if (nearestObject != null)
+            {
+                nearestObject.GetComponent<HighlightEffect>().highlighted = false;
+            }
             nearestObject = null;
             return nearestObject;
         }

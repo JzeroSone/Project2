@@ -15,6 +15,7 @@ GameObject:
   - component: {fileID: 914234084491816304}
   - component: {fileID: 2272372201033001250}
   - component: {fileID: 3252157848710883253}
+  - component: {fileID: -1341674790797501789}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -342,3 +343,15 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gold: {fileID: 8847018243064711364, guid: 222ab7022aa7cee4cada7d285f8e2edf, type: 3}
   experiences: {fileID: 3442475441783567565, guid: 8c82e2660cf73cc48a05a11414484882, type: 3}
+--- !u!114 &-1341674790797501789
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 157564625975385203}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a3c0838b279f31240a6cb8a8f85e4cae, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

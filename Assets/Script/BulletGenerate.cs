@@ -10,12 +10,9 @@ public class BulletGenerate : MonoBehaviour
     void Update()
     {
         player = GameObject.FindObjectOfType<Player>();
-        if (GameObject.FindWithTag("Player").GetComponent<FindNearestObject>().nearestObject != null)
+        if (GameObject.FindWithTag("Player").GetComponent<FindNearestObject>().nearestObject != null && coroutine == null)
         {
-            if(coroutine == null)
-            {
-                coroutine = StartCoroutine(Generate());
-            }
+            coroutine = StartCoroutine(Generate());
         }
     }
 
@@ -27,7 +24,7 @@ public class BulletGenerate : MonoBehaviour
         {
             attackSpeed = 0.1f;
         }
-        float seconds = player.AttackInterval / attackSpeed;
+        float seconds = player.attackInterval / attackSpeed;
         yield return new WaitForSeconds(seconds);
         coroutine = null;
     }

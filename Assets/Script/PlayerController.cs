@@ -1,15 +1,16 @@
+using DamageNumbersPro;
 using HighlightPlus;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
     public Player player;
-    public Renderer boundaryRenderer;
+    private Renderer boundaryRenderer;
     private Vector3 _direction;
 
     void Start()
     {
-        player = GetComponent<Player>();
+        boundaryRenderer = GameObject.FindWithTag("Boundary").GetComponent<Renderer>();
     }
 
     void Update()
@@ -29,12 +30,12 @@ public class PlayerController : MonoBehaviour
         {
             _direction.x = 1;
         }
-        GetComponent<Draw>().DrawCircle(transform.position, player.radius);
+        GetComponent<Draw>().DrawCircle(transform.position, player.attackRange);
     }
 
     void FixedUpdate()
     {
-        transform.position += _direction.normalized * player.moveSpeed * Time.fixedDeltaTime;
+        transform.position += _direction.normalized * player.movementSpeed * Time.fixedDeltaTime;
         Bounds _bounds = GetComponent<Renderer>().bounds;
         Vector2 max = boundaryRenderer.bounds.max;
         Vector2 min = boundaryRenderer.bounds.min;
@@ -44,18 +45,15 @@ public class PlayerController : MonoBehaviour
                 transform.position.z
             );
     }
-    private void OnTriggerExit(Collider other)
-    {
-        if (other.tag == "Enemy")
-        {
-            other.GetComponent<HighlightEffect>().highlighted = false;
-        }
-    }
+
     private void OnTriggerStay(Collider other)
     {
         if (other.tag == "Enemy")
         {
-            player.life -= 1 * Time.deltaTime;
+            Enemy enemy = other.GetComponent<Enemy>();
+            float damageReduction = player.defence > 0 ? player.defence / (16.6f + player.defence) : Mathf.Pow(0.94f, Mathf.Abs(player.defence)) - 1;
+            float damage = enemy.attackPower * (1 - damageReduction);
+            player.healthPoint -= damage * Time.deltaTime;
         }
     }
 }

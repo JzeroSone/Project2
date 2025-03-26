@@ -24,7 +24,7 @@ public class AutoPick : MonoBehaviour
             
             transform.position += _direction.normalized * speed * Time.deltaTime;
         }
-        else if(distance < target.GetComponent<Player>().radius)
+        else if(distance < target.GetComponent<Player>().attackRange)
         {
             Pick();
         }
