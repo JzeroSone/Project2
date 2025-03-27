@@ -6,10 +6,10 @@ public class BulletController : MonoBehaviour
     public Bullet bullet;
     public DamageNumber numberPrefab;
     public Player player;
-    private Vector3 _direction;
-
+    Vector3 _direction;
     void Start()
     {
+        player = GameObject.FindWithTag("Player").GetComponent<Player>();
         _direction = GameObject.FindWithTag("Player").GetComponent<FindNearestObject>().nearestObject.transform.position - transform.position;
     }
 
@@ -29,7 +29,7 @@ public class BulletController : MonoBehaviour
         {
             Enemy enemy = other.GetComponent<Enemy>();
             float damageReduction = enemy.defence > 0 ? enemy.defence / (16.6f + enemy.defence) : Mathf.Pow(0.94f, Mathf.Abs(enemy.defence)) - 1;
-            bool isCritical = Random.value < player.criticalHitRate;
+            bool isCritical = player.IsCriticalHit();
             float damage = bullet.attackPower * (1 - damageReduction) * (isCritical ? 1 + player.criticalDamage : 1);
             if (isCritical)
             {

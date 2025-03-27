@@ -53,7 +53,15 @@ public class PlayerController : MonoBehaviour
             Enemy enemy = other.GetComponent<Enemy>();
             float damageReduction = player.defence > 0 ? player.defence / (16.6f + player.defence) : Mathf.Pow(0.94f, Mathf.Abs(player.defence)) - 1;
             float damage = enemy.attackPower * (1 - damageReduction);
-            player.healthPoint -= damage * Time.deltaTime;
+            if(player.healthPoint > damage * Time.deltaTime)
+            {
+                player.healthPoint -= damage * Time.deltaTime;
+            }
+            else
+            {
+                player.healthPoint = 0f;
+            }
+            
         }
     }
 }

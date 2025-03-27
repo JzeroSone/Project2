@@ -271,7 +271,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   player: {fileID: 4898735315882213276}
-  boundaryRenderer: {fileID: 0}
 --- !u!114 &4898735315882213276
 MonoBehaviour:
   m_ObjectHideFlags: 0

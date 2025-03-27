@@ -295,7 +295,7 @@ Camera:
   far clip plane: 1000
   field of view: 60
   orthographic: 1
-  orthographic size: 10
+  orthographic size: 5
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -357,7 +357,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   enemyPerfab: {fileID: 157564625975385203, guid: 4e6264acf72269b479c57d326bb638a1, type: 3}
   boundaryRenderer: {fileID: 82913927}
-  maxCount: 100
+  maxCount: 20
   timer: 0.1
   enemyTransformList: []
 --- !u!4 &697382616
