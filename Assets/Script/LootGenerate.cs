@@ -7,13 +7,22 @@ public class LootGenerate : MonoBehaviour
 
     public void Generate()
     {
-        if(Random.value < 0.5f)
+        Loot loot = new Loot();
+        loot.type = Random.value < 0.5f ? Loot.Type.gold : Loot.Type.exp;
+        GameObject gameObject = null;
+        switch (loot.type)
         {
-            Instantiate(gold, transform.position, Quaternion.Euler(Vector3.zero));
+            case Loot.Type.gold:
+                gameObject = gold;
+                break;
+            case Loot.Type.exp:
+                gameObject = experiences;
+                break;
         }
-        else
+        if(gameObject != null)
         {
-            Instantiate(experiences, transform.position, Quaternion.Euler(Vector3.zero));
+            Instantiate(gameObject, transform.position, Quaternion.Euler(Vector3.zero));
         }
+        
     }
 }

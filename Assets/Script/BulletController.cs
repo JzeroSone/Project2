@@ -3,10 +3,15 @@ using UnityEngine;
 
 public class BulletController : MonoBehaviour
 {
-    public Bullet bullet;
     public DamageNumber numberPrefab;
-    public Player player;
+    Bullet bullet;
+    Player player;
     Vector3 _direction;
+
+    private void Awake()
+    {
+        bullet = GetComponent<Bullet>();
+    }
     void Start()
     {
         player = GameObject.FindWithTag("Player").GetComponent<Player>();
@@ -28,6 +33,7 @@ public class BulletController : MonoBehaviour
         if (other.tag == "Enemy")
         {
             Enemy enemy = other.GetComponent<Enemy>();
+            EnemyController enemyController = other.GetComponent<EnemyController>();
             float damageReduction = enemy.defence > 0 ? enemy.defence / (16.6f + enemy.defence) : Mathf.Pow(0.94f, Mathf.Abs(enemy.defence)) - 1;
             bool isCritical = player.IsCriticalHit();
             float damage = bullet.attackPower * (1 - damageReduction) * (isCritical ? 1 + player.criticalDamage : 1);
@@ -42,7 +48,8 @@ public class BulletController : MonoBehaviour
                 numberPrefab.GetTextMesh().fontStyle = TMPro.FontStyles.Normal;
             }
             numberPrefab.Spawn(transform.position, damage);
-            enemy.healthPoint -= damage;
+            enemyController.TakeDamage(damage);
+
             Destroy(gameObject);
         }
     }

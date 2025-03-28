@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 7532351443464485059}
   - component: {fileID: 5857053694342585397}
   - component: {fileID: 117285976978400316}
+  - component: {fileID: -1067315954420485968}
   m_Layer: 0
   m_Name: Experiences
   m_TagString: Untagged
@@ -97,6 +98,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9234a8e56fbddd14f8fd0ca1df44e0c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 9.8
-  target: {fileID: 0}
-  flag: 0
+  speed: 10
+  number: {fileID: 4967501835115971016, guid: d5fd056df6d9063489b20856a8b80b8e, type: 3}
+--- !u!114 &-1067315954420485968
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3442475441783567565}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b75b121a3307df94988e75b29d574776, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 1
+  value: 1

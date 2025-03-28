@@ -3,8 +3,8 @@ using UnityEngine;
 
 public class FindNearestObject : MonoBehaviour
 {
-    public float radius = 5;
-    public GameObject nearestObject = null;
+    float radius;
+    public GameObject nearestObject;
 
     void Start()
     {

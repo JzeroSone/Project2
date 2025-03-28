@@ -3,11 +3,15 @@ using UnityEngine;
 public class Draw : MonoBehaviour
 {
     public Material material;
-    public LineRenderer line;
+    LineRenderer line;
+
+    void Awake()
+    {
+        line = GetComponent<LineRenderer>();
+    }
 
     void Start()
     {
-        line = GetComponent<LineRenderer>();
         line.material = material;
         line.startColor = Color.green;
         line.endColor = Color.green;

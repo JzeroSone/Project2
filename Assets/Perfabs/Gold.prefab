@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3655889231398957060}
   - component: {fileID: 1323803827853451766}
   - component: {fileID: -2490881554969905699}
+  - component: {fileID: 1081687421436833492}
   m_Layer: 0
   m_Name: Gold
   m_TagString: Untagged
@@ -97,6 +98,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 9234a8e56fbddd14f8fd0ca1df44e0c3, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 10.3
-  target: {fileID: 0}
-  flag: 0
+  speed: 10
+  number: {fileID: 2886158425507424086, guid: 946afb98df1c3604bba8f5e7267e37a7, type: 3}
+--- !u!114 &1081687421436833492
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8847018243064711364}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b75b121a3307df94988e75b29d574776, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 0
+  value: 1

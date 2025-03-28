@@ -100,7 +100,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   attackPower: 10
-  speed: 7.76
+  speed: 8
   lifetime: 3
 --- !u!135 &-3725760981346152870
 SphereCollider:
@@ -135,6 +135,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8b89f2730e8f4694c95d7666f26ca3ca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  bullet: {fileID: 7872218333342810875}
-  numberPrefab: {fileID: 4228029711700210951, guid: e76a2fb6521ad8e49a286eaf7e2cffd1, type: 3}
-  player: {fileID: 0}
+  numberPrefab: {fileID: 3635591009828885264, guid: df6e2667929550941831567ec907e7ce, type: 3}

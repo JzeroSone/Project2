@@ -1,14 +1,20 @@
+using DamageNumbersPro;
 using UnityEngine;
 
 public class AutoPick : MonoBehaviour
 {
     public float speed = 20.0f;
-    public Transform target;
-    public bool flag = false;
+    public DamageNumber number;
+    Transform target;
+    bool flag = false;
+    PlayerController playerController;
+    Loot loot;
 
     void Start()
     {
-        target = GameObject.FindGameObjectWithTag("Player").transform;
+        playerController = GameObject.FindWithTag("Player").GetComponent<PlayerController>();
+        target = GameObject.FindWithTag("Player").transform;
+        loot = GetComponent<Loot>();
     }
 
     void Update()
@@ -18,6 +24,8 @@ public class AutoPick : MonoBehaviour
         {
             if (distance < 0.1f)
             {
+                playerController.AddLoot(loot);
+                number.Spawn(target.position, loot.value);
                 Destroy(gameObject);
             }
             Vector3 _direction = target.position - transform.position;

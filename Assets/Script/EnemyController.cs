@@ -2,28 +2,41 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
-    public Transform playerTransform;
-    public Enemy enemy;
-    void Start()
+    Transform playerTransform;
+    Enemy enemy;
+    FloatingHealthBar healthBar;
+
+    void Awake()
     {
         enemy = GetComponent<Enemy>();
-        playerTransform = GameObject.FindWithTag("Player").transform;
+        healthBar = GetComponentInChildren<FloatingHealthBar>();
     }
-
-    void Update()
+    void Start()
     {
-        if(enemy.healthPoint <= 0)
-        {
-            GameObject.FindObjectOfType<EnemyGenerate>().RemoveEnemy(transform);
-            GetComponent<LootGenerate>().Generate();
-            Destroy(gameObject);
-        }
+        playerTransform = GameObject.FindWithTag("Player").transform;
     }
 
     void FixedUpdate()
     {
         Vector3 _direction = playerTransform.position - transform.position;
         transform.Translate(_direction.normalized * enemy.movementSpeed * Time.fixedDeltaTime);
+    }
+
+    public void TakeDamage(float damageAmout)
+    {
+        enemy.healthPoint -= damageAmout;
+        healthBar.UpdateHealthBar(enemy.healthPoint, enemy.maxHealthPoint);
+        if(enemy.healthPoint <= 0)
+        {
+            Die();
+        }
+    }
+
+    void Die()
+    {
+        GetComponent<LootGenerate>().Generate();
+        GameObject.FindObjectOfType<EnemyGenerate>().RemoveEnemy(transform);
+        Destroy(gameObject);
     }
     
 }

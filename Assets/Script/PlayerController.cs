@@ -4,13 +4,22 @@ using UnityEngine;
 
 public class PlayerController : MonoBehaviour
 {
-    public Player player;
-    private Renderer boundaryRenderer;
-    private Vector3 _direction;
+    Player player;
+    Renderer boundaryRenderer;
+    Vector3 _direction;
+    FloatingHealthBar healthBar;
 
-    void Start()
+    void Awake()
     {
+        healthBar = GetComponentInChildren<FloatingHealthBar>();
+        player = GetComponent<Player>();
         boundaryRenderer = GameObject.FindWithTag("Boundary").GetComponent<Renderer>();
+    }
+
+    private void Start()
+    {
+        player.healthPoint = player.maxHealthPoint;
+        healthBar.UpdateHealthBar(player.healthPoint, player.maxHealthPoint);
     }
 
     void Update()
@@ -53,15 +62,34 @@ public class PlayerController : MonoBehaviour
             Enemy enemy = other.GetComponent<Enemy>();
             float damageReduction = player.defence > 0 ? player.defence / (16.6f + player.defence) : Mathf.Pow(0.94f, Mathf.Abs(player.defence)) - 1;
             float damage = enemy.attackPower * (1 - damageReduction);
-            if(player.healthPoint > damage * Time.deltaTime)
-            {
-                player.healthPoint -= damage * Time.deltaTime;
-            }
-            else
-            {
-                player.healthPoint = 0f;
-            }
-            
+            TakeDamage(damage * Time.deltaTime);
         }
+    }
+
+    public void TakeDamage(float damageAmount)
+    {
+        player.healthPoint -= damageAmount;
+        healthBar.UpdateHealthBar(player.healthPoint, player.maxHealthPoint);
+        if (player.healthPoint <= 0)
+        {
+            player.healthPoint = 0f;
+            Die();
+        }
+    }
+
+    public void AddLoot(Loot loot)
+    {
+        switch (loot.type)
+        {
+            case Loot.Type.gold: player.gold += loot.value;
+                break;
+            case Loot.Type.exp: player.experience += loot.value;
+                break;
+        }
+    }
+
+    public void Die()
+    {
+
     }
 }
