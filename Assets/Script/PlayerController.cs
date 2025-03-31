@@ -1,5 +1,6 @@
 using DamageNumbersPro;
 using HighlightPlus;
+using TMPro;
 using UnityEngine;
 
 public class PlayerController : MonoBehaviour
@@ -7,19 +8,27 @@ public class PlayerController : MonoBehaviour
     Player player;
     Renderer boundaryRenderer;
     Vector3 _direction;
-    FloatingHealthBar healthBar;
+    FloatingBar healthBar;
+    FloatingBar expBar;
+    ShowText goldNumber;
+    ShowText levelNumber;
+    LevelUpAnimation levelUpAnimation;
 
     void Awake()
     {
-        healthBar = GetComponentInChildren<FloatingHealthBar>();
+        healthBar = GetComponentInChildren<FloatingBar>();
+        expBar = GameObject.Find("FloatingExpBar").GetComponent<FloatingBar>();
+        goldNumber = GameObject.Find("GoldNumber").GetComponentInChildren<ShowText>();
+        levelNumber = GameObject.Find("LevelNumber").GetComponent<ShowText>();
         player = GetComponent<Player>();
         boundaryRenderer = GameObject.FindWithTag("Boundary").GetComponent<Renderer>();
+        levelUpAnimation = GetComponent<LevelUpAnimation>();
     }
 
     private void Start()
     {
-        player.healthPoint = player.maxHealthPoint;
-        healthBar.UpdateHealthBar(player.healthPoint, player.maxHealthPoint);
+        healthBar.UpdateBar(player.healthPoint, player.maxHealthPoint);
+        expBar.UpdateBar(player.experience, player.maxHealthPoint);
     }
 
     void Update()
@@ -69,7 +78,7 @@ public class PlayerController : MonoBehaviour
     public void TakeDamage(float damageAmount)
     {
         player.healthPoint -= damageAmount;
-        healthBar.UpdateHealthBar(player.healthPoint, player.maxHealthPoint);
+        healthBar.UpdateBar(player.healthPoint, player.maxHealthPoint);
         if (player.healthPoint <= 0)
         {
             player.healthPoint = 0f;
@@ -82,8 +91,17 @@ public class PlayerController : MonoBehaviour
         switch (loot.type)
         {
             case Loot.Type.gold: player.gold += loot.value;
+                goldNumber.UpdateText(player.gold.ToString());
                 break;
             case Loot.Type.exp: player.experience += loot.value;
+                if(player.experience >= player.maxExperience)
+                {
+                    player.experience -= player.maxExperience;
+                    player.level++;
+                    levelNumber.UpdateText("LV." + player.level);
+                    levelUpAnimation.LevelUp();
+                }
+                expBar.UpdateBar(player.experience, player.maxExperience);
                 break;
         }
     }

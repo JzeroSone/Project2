@@ -6,13 +6,16 @@ public class Player : MonoBehaviour
     public float healthPoint, maxHealthPoint = 100f;
     public float defence = 0f;
     public int experience = 0;
+    public int maxExperience = 100;
     public float movementSpeed = 5f;
     public float attackInterval = 0.5f;
     public float attackSpeed = 0f;
-    public float attackRange = 5f;
+    public float attackRange = 4f;
+    public float pickRange = 2f;
     public int gold = 0;
     public float criticalHitRate = 0.05f;
     public float criticalDamage = 0.5f;
+    public int kills = 0;
 
     float c = 0f;
     float tempRate = 0f;

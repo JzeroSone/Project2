@@ -5,10 +5,16 @@ public class LootGenerate : MonoBehaviour
     public GameObject gold;
     public GameObject experiences;
 
+    Loot loot;
+
+    private void Awake()
+    {
+        loot = GetComponent<Loot>();
+    }
+
     public void Generate()
     {
-        Loot loot = new Loot();
-        loot.type = Random.value < 0.5f ? Loot.Type.gold : Loot.Type.exp;
+        loot.type = Random.value < 0.1f ? Loot.Type.gold : Loot.Type.exp;
         GameObject gameObject = null;
         switch (loot.type)
         {

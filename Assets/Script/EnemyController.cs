@@ -2,31 +2,33 @@ using UnityEngine;
 
 public class EnemyController : MonoBehaviour
 {
-    Transform playerTransform;
     Enemy enemy;
-    FloatingHealthBar healthBar;
+    FloatingBar healthBar;
+    ShowText enemyNumber;
+    Player player;
 
     void Awake()
     {
         enemy = GetComponent<Enemy>();
-        healthBar = GetComponentInChildren<FloatingHealthBar>();
+        healthBar = GetComponentInChildren<FloatingBar>();
+        enemyNumber = GameObject.Find("EnemyNumber").GetComponentInChildren<ShowText>();
     }
     void Start()
     {
-        playerTransform = GameObject.FindWithTag("Player").transform;
+        player = GameObject.FindWithTag("Player").GetComponent<Player>();
     }
 
     void FixedUpdate()
     {
-        Vector3 _direction = playerTransform.position - transform.position;
+        Vector3 _direction = player.transform.position - transform.position;
         transform.Translate(_direction.normalized * enemy.movementSpeed * Time.fixedDeltaTime);
     }
 
     public void TakeDamage(float damageAmout)
     {
         enemy.healthPoint -= damageAmout;
-        healthBar.UpdateHealthBar(enemy.healthPoint, enemy.maxHealthPoint);
-        if(enemy.healthPoint <= 0)
+        healthBar.UpdateBar(enemy.healthPoint, enemy.maxHealthPoint);
+        if (enemy.healthPoint <= 0)
         {
             Die();
         }
@@ -36,6 +38,8 @@ public class EnemyController : MonoBehaviour
     {
         GetComponent<LootGenerate>().Generate();
         GameObject.FindObjectOfType<EnemyGenerate>().RemoveEnemy(transform);
+        player.kills++;
+        enemyNumber.UpdateText(player.kills.ToString());
         Destroy(gameObject);
     }
     

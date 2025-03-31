@@ -3,11 +3,11 @@ using UnityEngine;
 
 public class GameTimeController : MonoBehaviour
 {
-    TextMeshProUGUI textMeshPro;
+    ShowText text;
     int gameTime;
     private void Awake()
     {
-        textMeshPro = GetComponent<TextMeshProUGUI>();
+        text = GetComponent<ShowText>();
     }
 
     private void Start()
@@ -22,7 +22,7 @@ public class GameTimeController : MonoBehaviour
             gameTime = (int)Time.time;
             int hour = gameTime / 60;
             int minute = gameTime % 60;
-            textMeshPro.text = string.Format("{0:D2}:{1:D2}", hour, minute);
+            text.UpdateText(string.Format("{0:D2}:{1:D2}", hour, minute));
         }
         
     }

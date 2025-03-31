@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 2272372201033001250}
   - component: {fileID: 3252157848710883253}
   - component: {fileID: -1341674790797501789}
+  - component: {fileID: 7350104686597767804}
   m_Layer: 0
   m_Name: Enemy
   m_TagString: Enemy
@@ -381,6 +382,20 @@ MonoBehaviour:
   attackPower: 10
   defence: 1
   movementSpeed: 1
+--- !u!114 &7350104686597767804
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 157564625975385203}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: b75b121a3307df94988e75b29d574776, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  type: 0
+  value: 0
 --- !u!1 &4579375276281697498
 GameObject:
   m_ObjectHideFlags: 0
@@ -541,9 +556,9 @@ GameObject:
   m_Component:
   - component: {fileID: 9595797528010135}
   - component: {fileID: 310914720170900803}
-  - component: {fileID: 8913160190952939516}
+  - component: {fileID: 8559131614884037001}
   m_Layer: 5
-  m_Name: HealthBar
+  m_Name: EnemyFloatingHealthBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -621,7 +636,7 @@ MonoBehaviour:
   m_OnValueChanged:
     m_PersistentCalls:
       m_Calls: []
---- !u!114 &8913160190952939516
+--- !u!114 &8559131614884037001
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
