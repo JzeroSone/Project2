@@ -185,7 +185,8 @@ MonoBehaviour:
   m_text: 123<size=-1.5> XP</size>
   m_isRightToLeft: 0
   m_fontAsset: {fileID: 11400000, guid: 6d070d3aaf6160f42b5e8124261b645e, type: 2}
-  m_sharedMaterial: {fileID: -3016009729354918782, guid: 6d070d3aaf6160f42b5e8124261b645e, type: 2}
+  m_sharedMaterial: {fileID: -3016009729354918782, guid: 6d070d3aaf6160f42b5e8124261b645e,
+    type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
@@ -736,9 +737,9 @@ SortingGroup:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 3745033563111380497}
   m_Enabled: 1
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
-  m_SortingOrder: 1000
+  m_SortingLayerID: -105541197
+  m_SortingLayer: 2
+  m_SortingOrder: 0
   m_SortAtRoot: 0
 --- !u!114 &2909688061573100325
 MonoBehaviour:

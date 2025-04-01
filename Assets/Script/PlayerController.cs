@@ -13,6 +13,7 @@ public class PlayerController : MonoBehaviour
     ShowText goldNumber;
     ShowText levelNumber;
     LevelUpAnimation levelUpAnimation;
+    Animator animator;
 
     void Awake()
     {
@@ -23,6 +24,7 @@ public class PlayerController : MonoBehaviour
         player = GetComponent<Player>();
         boundaryRenderer = GameObject.FindWithTag("Boundary").GetComponent<Renderer>();
         levelUpAnimation = GetComponent<LevelUpAnimation>();
+        animator = GetComponent<Animator>();
     }
 
     private void Start()
@@ -37,17 +39,23 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKey(KeyCode.W))
         {
             _direction.y = 1;
+            animator.SetInteger("Direction", 1);
         }else if (Input.GetKey(KeyCode.S))
         {
             _direction.y = -1;
+            animator.SetInteger("Direction", 0);
         }
         if (Input.GetKey(KeyCode.A))
         {
             _direction.x = -1;
-        }else if (Input.GetKey(KeyCode.D))
+            animator.SetInteger("Direction", 3);
+        }
+        else if (Input.GetKey(KeyCode.D))
         {
             _direction.x = 1;
+            animator.SetInteger("Direction", 2);
         }
+        animator.SetBool("IsMoving", _direction.magnitude > 0);
         GetComponent<Draw>().DrawCircle(transform.position, player.attackRange);
     }
 

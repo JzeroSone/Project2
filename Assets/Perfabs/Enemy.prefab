@@ -17,7 +17,7 @@ GameObject:
   - component: {fileID: 3252157848710883253}
   - component: {fileID: -1341674790797501789}
   - component: {fileID: 7350104686597767804}
-  m_Layer: 0
+  m_Layer: 7
   m_Name: Enemy
   m_TagString: Enemy
   m_Icon: {fileID: 0}
@@ -78,10 +78,11 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -105541197
+  m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Sprite: {fileID: -2413806693520163455, guid: ebe73ca9363db456bacf42c025bb4847, type: 3}
+  m_Sprite: {fileID: -2413806693520163455, guid: ebe73ca9363db456bacf42c025bb4847,
+    type: 3}
   m_Color: {r: 0, g: 0, b: 0, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -364,7 +365,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gold: {fileID: 8847018243064711364, guid: 222ab7022aa7cee4cada7d285f8e2edf, type: 3}
-  experiences: {fileID: 3442475441783567565, guid: 8c82e2660cf73cc48a05a11414484882, type: 3}
+  experiences: {fileID: 3442475441783567565, guid: 8c82e2660cf73cc48a05a11414484882,
+    type: 3}
 --- !u!114 &-1341674790797501789
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -407,7 +409,7 @@ GameObject:
   - component: {fileID: 8034631170327004297}
   - component: {fileID: 4496885231814425241}
   - component: {fileID: 2262699487431429467}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: Background
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -482,7 +484,7 @@ GameObject:
   - component: {fileID: 4648336021295637169}
   - component: {fileID: 6632726246589474924}
   - component: {fileID: 9049109304718606046}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: Fill
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -557,7 +559,7 @@ GameObject:
   - component: {fileID: 9595797528010135}
   - component: {fileID: 310914720170900803}
   - component: {fileID: 8559131614884037001}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: EnemyFloatingHealthBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -660,7 +662,7 @@ GameObject:
   - component: {fileID: 5356659430606564841}
   - component: {fileID: 321980335853830222}
   - component: {fileID: 2916630118852796640}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: Canvas
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -707,7 +709,7 @@ Canvas:
   m_VertexColorAlwaysGammaSpace: 0
   m_AdditionalShaderChannelsFlag: 0
   m_UpdateRectTransformForStandalone: 0
-  m_SortingLayerID: 0
+  m_SortingLayerID: -105541197
   m_SortingOrder: 0
   m_TargetDisplay: 0
 --- !u!114 &321980335853830222
@@ -759,7 +761,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 5788503385963798445}
-  m_Layer: 5
+  m_Layer: 7
   m_Name: Fill Area
   m_TagString: Untagged
   m_Icon: {fileID: 0}

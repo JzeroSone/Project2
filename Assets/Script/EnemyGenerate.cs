@@ -5,8 +5,8 @@ public class EnemyGenerate : MonoBehaviour
 {
     public GameObject enemyPerfab;
     public Renderer boundaryRenderer;
-    public int maxCount = 10;
-    public float timer = 0.5f;
+    public int maxCount = 20;
+    public float timer = 0.1f;
 
     public List<Transform> enemyTransformList = new List<Transform>();
 
