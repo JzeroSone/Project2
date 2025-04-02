@@ -382,7 +382,7 @@ MonoBehaviour:
   healthPoint: 20
   maxHealthPoint: 20
   attackPower: 10
-  defence: 1
+  defence: 0
   movementSpeed: 1
 --- !u!114 &7350104686597767804
 MonoBehaviour:

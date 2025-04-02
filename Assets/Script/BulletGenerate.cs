@@ -5,12 +5,16 @@ public class BulletGenerate : MonoBehaviour
 {
     public GameObject bulletPerfab;
     public Player player;
-    public Coroutine coroutine;
+    Coroutine coroutine;
+
+    private void Awake()
+    {
+        player = GetComponent<Player>();
+    }
 
     void Update()
     {
-        player = GameObject.FindObjectOfType<Player>();
-        if (GameObject.FindWithTag("Player").GetComponent<FindNearestObject>().nearestObject != null && coroutine == null)
+        if (GetComponent<FindNearestObject>().nearestObject != null && coroutine == null)
         {
             coroutine = StartCoroutine(Generate());
         }
@@ -19,7 +23,7 @@ public class BulletGenerate : MonoBehaviour
     IEnumerator Generate()
     {
         Instantiate(bulletPerfab, transform.position, Quaternion.Euler(0, 0, 0));
-        float attackSpeed = 1 + player.attackSpeed;
+        float attackSpeed = 1 + player.attackSpeedBonus;
         if(attackSpeed < 0.1f)
         {
             attackSpeed = 0.1f;

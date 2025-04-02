@@ -3,16 +3,16 @@ using UnityEngine;
 
 public class FindNearestObject : MonoBehaviour
 {
-    float radius;
+    Player player;
     public GameObject nearestObject;
 
     void Start()
     {
-        radius = GetComponent<Player>().attackRange;
+        player = GetComponent<Player>();
     }
     void Update()
     {
-        nearestObject = Find(transform.position, radius);
+        nearestObject = Find(transform.position, player.attackRange * (player.attackRangeBonus + 1));
     }
 
     GameObject Find(Vector3 center, float radius)

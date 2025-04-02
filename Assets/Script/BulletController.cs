@@ -36,7 +36,8 @@ public class BulletController : MonoBehaviour
             EnemyController enemyController = other.GetComponent<EnemyController>();
             float damageReduction = enemy.defence > 0 ? enemy.defence / (16.6f + enemy.defence) : Mathf.Pow(0.94f, Mathf.Abs(enemy.defence)) - 1;
             bool isCritical = player.IsCriticalHit();
-            float damage = bullet.attackPower * (1 - damageReduction) * (isCritical ? 1 + player.criticalDamage : 1);
+            float attack = player.attack * (player.attackBonus + 1);
+            float damage = attack * bullet.attackMultiplier * (1 - damageReduction) * (isCritical ? 1 + player.criticalDamage : 1);
             if (isCritical)
             {
                 numberPrefab.SetColor(Color.red);

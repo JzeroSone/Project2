@@ -4,13 +4,18 @@ public class Player : MonoBehaviour
 {
     public int level = 1;
     public float healthPoint, maxHealthPoint = 100f;
+    public float attack = 10f;
+    public float attackBonus = 0f;
     public float defence = 0f;
+    public float defenceBonus = 0f;
     public int experience = 0;
     public int maxExperience = 100;
     public float movementSpeed = 5f;
+    public float movementSpeedBonus = 0f;
     public float attackInterval = 0.5f;
-    public float attackSpeed = 0f;
+    public float attackSpeedBonus = 0f;
     public float attackRange = 4f;
+    public float attackRangeBonus = 0f;
     public float pickRange = 2f;
     public int gold = 0;
     public float criticalHitRate = 0.05f;
@@ -19,7 +24,7 @@ public class Player : MonoBehaviour
 
     float c = 0f;
     float tempRate = 0f;
-
+    
     void Update()
     {
         if(tempRate != criticalHitRate)

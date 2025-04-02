@@ -14,6 +14,7 @@ public class PlayerController : MonoBehaviour
     ShowText levelNumber;
     LevelUpAnimation levelUpAnimation;
     Animator animator;
+    Vector3 mousePosition;
 
     void Awake()
     {
@@ -31,11 +32,22 @@ public class PlayerController : MonoBehaviour
     {
         healthBar.UpdateBar(player.healthPoint, player.maxHealthPoint);
         expBar.UpdateBar(player.experience, player.maxHealthPoint);
+        _direction = Vector3.zero;
     }
 
     void Update()
     {
-        _direction = Vector3.zero;
+        // TODO 角色方向未设置
+        if (Input.GetMouseButtonDown(1))
+        {
+            mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
+            mousePosition.z = 0f;
+            _direction = mousePosition - transform.position;
+        }
+        if (Input.GetKeyUp(KeyCode.W) || Input.GetKeyUp(KeyCode.S) || Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.D) || Vector3.Distance(transform.position, mousePosition) < 0.1f)
+        {
+            _direction = Vector3.zero;
+        }
         if (Input.GetKey(KeyCode.W))
         {
             _direction.y = 1;
@@ -56,12 +68,13 @@ public class PlayerController : MonoBehaviour
             animator.SetInteger("Direction", 2);
         }
         animator.SetBool("IsMoving", _direction.magnitude > 0);
-        GetComponent<Draw>().DrawCircle(transform.position, player.attackRange);
+        GetComponent<Draw>().DrawCircle(transform.position, player.attackRange * (player.attackRangeBonus + 1));
     }
 
     void FixedUpdate()
     {
-        transform.position += _direction.normalized * player.movementSpeed * Time.fixedDeltaTime;
+        float movementSpeed = player.movementSpeed * (player.movementSpeedBonus + 1);
+        transform.position += _direction.normalized * movementSpeed * Time.fixedDeltaTime;
         Bounds _bounds = GetComponent<Renderer>().bounds;
         Vector2 max = boundaryRenderer.bounds.max;
         Vector2 min = boundaryRenderer.bounds.min;

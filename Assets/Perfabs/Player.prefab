@@ -688,8 +688,8 @@ LineRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: 0
-  m_SortingLayer: 0
+  m_SortingLayerID: -105541197
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Positions:
   - {x: 0, y: 0, z: 0}
@@ -780,12 +780,16 @@ MonoBehaviour:
   level: 1
   healthPoint: 100
   maxHealthPoint: 100
+  attack: 10
+  attackBonus: 0
   defence: 0
+  defenceBonus: 0
   experience: 0
   maxExperience: 100
   movementSpeed: 5
+  movementSpeedBonus: 0
   attackInterval: 0.5
-  attackSpeed: 0
+  attackSpeedBonus: 0
   attackRange: 4
   pickRange: 2
   gold: 0
