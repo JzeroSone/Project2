@@ -37,12 +37,24 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        // TODO 角色方向未设置
         if (Input.GetMouseButtonDown(1))
         {
             mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             mousePosition.z = 0f;
             _direction = mousePosition - transform.position;
+            if(Vector3.Angle(Vector3.up, _direction) <= 45f)
+            {
+                animator.SetInteger("Direction", 1);
+            }else if(Vector3.Angle(Vector3.down, _direction) <= 45f)
+            {
+                animator.SetInteger("Direction", 0);
+            }else if (Vector3.Angle(Vector3.left, _direction) <= 45f)
+            {
+                animator.SetInteger("Direction", 3);
+            }else if (Vector3.Angle(Vector3.right, _direction) <= 45f)
+            {
+                animator.SetInteger("Direction", 2);
+            }
         }
         if (Input.GetKeyUp(KeyCode.W) || Input.GetKeyUp(KeyCode.S) || Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.D) || Vector3.Distance(transform.position, mousePosition) < 0.1f)
         {
