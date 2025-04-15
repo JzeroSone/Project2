@@ -9,7 +9,7 @@ public class LootGenerate : MonoBehaviour
 
     private void Awake()
     {
-        loot = GetComponent<Loot>();
+        loot = gameObject.AddComponent<Loot>();
     }
 
     public void Generate()
