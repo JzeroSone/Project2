@@ -6,21 +6,44 @@ public class EnemyController : MonoBehaviour
     FloatingBar healthBar;
     ShowText enemyNumber;
     Player player;
+    Vector3 _direction;
+    Animator animator;
 
     void Awake()
     {
         enemy = GetComponent<Enemy>();
         healthBar = GetComponentInChildren<FloatingBar>();
         enemyNumber = GameObject.Find("EnemyNumber").GetComponentInChildren<ShowText>();
+        animator = GetComponent<Animator>();
     }
     void Start()
     {
         player = GameObject.FindWithTag("Player").GetComponent<Player>();
     }
 
+    void Update()
+    {
+        _direction = player.transform.position - transform.position;
+        if (Vector3.Angle(Vector3.up, _direction) <= 45f)
+        {
+            animator.SetInteger("Direction", 1);
+        }
+        else if (Vector3.Angle(Vector3.down, _direction) <= 45f)
+        {
+            animator.SetInteger("Direction", 0);
+        }
+        else if (Vector3.Angle(Vector3.left, _direction) <= 45f)
+        {
+            animator.SetInteger("Direction", 2);
+        }
+        else if (Vector3.Angle(Vector3.right, _direction) <= 45f)
+        {
+            animator.SetInteger("Direction", 3);
+        }
+    }
+
     void FixedUpdate()
     {
-        Vector3 _direction = player.transform.position - transform.position;
         transform.Translate(_direction.normalized * enemy.movementSpeed * Time.fixedDeltaTime);
     }
 

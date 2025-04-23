@@ -39,21 +39,33 @@ public class PlayerController : MonoBehaviour
     {
         if (Input.GetMouseButtonDown(1))
         {
+            animator.SetBool("isMove", true);
             mousePosition = Camera.main.ScreenToWorldPoint(Input.mousePosition);
             mousePosition.z = 0f;
             _direction = mousePosition - transform.position;
             if(Vector3.Angle(Vector3.up, _direction) <= 45f)
             {
                 animator.SetInteger("Direction", 1);
-            }else if(Vector3.Angle(Vector3.down, _direction) <= 45f)
+                animator.SetFloat("MoveX", 0);
+                animator.SetFloat("MoveY", 1);
+            }
+            else if(Vector3.Angle(Vector3.down, _direction) <= 45f)
             {
                 animator.SetInteger("Direction", 0);
-            }else if (Vector3.Angle(Vector3.left, _direction) <= 45f)
+                animator.SetFloat("MoveX", 0);
+                animator.SetFloat("MoveY", -1);
+            }
+            else if (Vector3.Angle(Vector3.left, _direction) <= 45f)
             {
                 animator.SetInteger("Direction", 3);
-            }else if (Vector3.Angle(Vector3.right, _direction) <= 45f)
+                animator.SetFloat("MoveX", -1);
+                animator.SetFloat("MoveY", 0);
+            }
+            else if (Vector3.Angle(Vector3.right, _direction) <= 45f)
             {
                 animator.SetInteger("Direction", 2);
+                animator.SetFloat("MoveX", 1);
+                animator.SetFloat("MoveY", 0);
             }
         }
         if (Input.GetKeyUp(KeyCode.W) || Input.GetKeyUp(KeyCode.S) || Input.GetKeyUp(KeyCode.A) || Input.GetKeyUp(KeyCode.D) || Vector3.Distance(transform.position, mousePosition) < 0.1f)
@@ -63,23 +75,27 @@ public class PlayerController : MonoBehaviour
         if (Input.GetKey(KeyCode.W))
         {
             _direction.y = 1;
-            animator.SetInteger("Direction", 1);
+            animator.SetFloat("MoveX", 0);
+            animator.SetFloat("MoveY", 1);
         }else if (Input.GetKey(KeyCode.S))
         {
             _direction.y = -1;
-            animator.SetInteger("Direction", 0);
+            animator.SetFloat("MoveX", 0);
+            animator.SetFloat("MoveY", -1);
         }
         if (Input.GetKey(KeyCode.A))
         {
             _direction.x = -1;
-            animator.SetInteger("Direction", 3);
+            animator.SetFloat("MoveX", -1);
+            animator.SetFloat("MoveY", 0);
         }
         else if (Input.GetKey(KeyCode.D))
         {
             _direction.x = 1;
-            animator.SetInteger("Direction", 2);
+            animator.SetFloat("MoveX", 1);
+            animator.SetFloat("MoveY", 0);
         }
-        animator.SetBool("IsMoving", _direction.magnitude > 0);
+        animator.SetBool("isMove", _direction.magnitude > 0);
         GetComponent<Draw>().DrawCircle(transform.position, player.attackRange * (player.attackRangeBonus + 1));
     }
 
