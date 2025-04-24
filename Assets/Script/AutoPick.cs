@@ -9,6 +9,9 @@ public class AutoPick : MonoBehaviour
     bool flag = false;
     PlayerController playerController;
     Loot loot;
+    float distance;
+    Vector3 _direction;
+    float timer;
 
     void Start()
     {
@@ -19,7 +22,7 @@ public class AutoPick : MonoBehaviour
 
     void Update()
     {
-        float distance = Vector3.Distance(transform.position, target.position);
+        distance = Vector3.Distance(transform.position, target.position);
         if (flag == true)
         {
             if (distance < 0.1f)
@@ -28,9 +31,17 @@ public class AutoPick : MonoBehaviour
                 number.Spawn(target.position, loot.value);
                 Destroy(gameObject);
             }
-            Vector3 _direction = target.position - transform.position;
-            
-            transform.position += _direction.normalized * speed * Time.deltaTime;
+
+            _direction = target.position - transform.position;
+            if (timer < 0.1f)
+            {
+                transform.position -= _direction.normalized * speed * 0.5f * Time.deltaTime;
+                timer += Time.deltaTime;
+            }
+            else
+            {
+                transform.position += _direction.normalized * speed * Time.deltaTime;
+            }
         }
         else if(distance < target.GetComponent<Player>().pickRange)
         {

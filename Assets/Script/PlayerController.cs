@@ -96,7 +96,7 @@ public class PlayerController : MonoBehaviour
             animator.SetFloat("MoveY", 0);
         }
         animator.SetBool("isMove", _direction.magnitude > 0);
-        GetComponent<Draw>().DrawCircle(transform.position, player.attackRange * (player.attackRangeBonus + 1));
+        //GetComponent<Draw>().DrawCircle(transform.position, player.attackRange * (player.attackRangeBonus + 1));
     }
 
     void FixedUpdate()
@@ -145,8 +145,8 @@ public class PlayerController : MonoBehaviour
             case Loot.Type.exp: player.experience += loot.value;
                 if(player.experience >= player.maxExperience)
                 {
-                    player.experience -= player.maxExperience;
-                    player.level++;
+                    player.level += player.experience / player.maxExperience;
+                    player.experience %= player.maxExperience;
                     levelNumber.UpdateText("LV." + player.level);
                     levelUpAnimation.LevelUp();
                 }
